@@ -24,7 +24,7 @@
                     <Font name="Arial" size="20.0"/>
                 </font>
             </Text>
-            <Button fx:id="loginButton" onAction="#nextPage" mnemonicParsing="false" prefHeight="25.0" prefWidth="305.0" text="Button"/>
+            <Button fx:id="loginButton" onAction="#nextPage" mnemonicParsing="false" prefHeight="25.0" prefWidth="305.0" text="Login"/>
         </VBox>
     </center>
 </BorderPane>

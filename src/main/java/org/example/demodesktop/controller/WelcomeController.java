@@ -19,7 +19,6 @@ public class WelcomeController {
     @FXML
     private void nextPage() throws IOException {
         log.info("Login Button clicked");
-        LoginPage loginPage = new LoginPage();
-        loginPage.start((Stage) loginButton.getScene().getWindow());
+        new LoginPage().start((Stage) loginButton.getScene().getWindow());
     }
 }
