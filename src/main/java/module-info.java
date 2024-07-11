@@ -3,6 +3,7 @@ module org.example.demodesktop {
     requires javafx.fxml;
     requires java.logging;
     requires java.sql;
+    requires jbcrypt;
 
 
     opens org.example.demodesktop to javafx.fxml;

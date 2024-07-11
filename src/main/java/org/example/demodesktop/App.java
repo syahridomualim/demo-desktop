@@ -13,9 +13,15 @@ import static org.example.demodesktop.utils.UIUtils.show;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("welcome-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        show(stage, scene);
+        if (SessionManager.isLoggedIn()) {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("product-list-page.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            show(stage, scene);
+        } else {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("welcome-page.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            show(stage, scene);
+        }
     }
 
     public static void main(String[] args) {
