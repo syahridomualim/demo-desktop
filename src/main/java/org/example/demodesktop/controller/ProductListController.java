@@ -6,9 +6,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
+import org.example.demodesktop.config.SessionManager;
 import org.example.demodesktop.model.Product;
 import org.example.demodesktop.repository.ProductRepository;
+import org.example.demodesktop.view.CreateProductPage;
+import org.example.demodesktop.view.LoginPage;
+import org.example.demodesktop.view.ProductDetailPage;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
@@ -38,7 +44,7 @@ public class ProductListController {
     private Button logoutButton;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         productTableView.setItems(getProducts());
 
         productCodeColumn.setCellValueFactory(new PropertyValueFactory<>("productCode"));
@@ -55,6 +61,7 @@ public class ProductListController {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY ) {
                     Product clickedProduct = row.getItem();
                     log.info("Product clicked: " + clickedProduct);
+                    showProductDetailPage((Stage) productTableView.getScene().getWindow(), clickedProduct);
                 }
             });
             return row;
@@ -62,18 +69,28 @@ public class ProductListController {
     }
 
     @FXML
-    private void handleCreateProduct() {
-
+    private void handleCreateProduct() throws IOException {
+        new CreateProductPage().start((Stage) createProductButton.getScene().getWindow());
     }
 
     @FXML
-    private void handleLogout() {
-
+    private void handleLogout() throws IOException {
+        SessionManager.clearSession();
+        new LoginPage().start((Stage) logoutButton.getScene().getWindow());
     }
 
     private ObservableList<Product> getProducts() {
         List<Product> products = productRepository.findAll();
         return FXCollections.observableList(products);
+    }
+
+    private void showProductDetailPage(Stage primaryStage, Product product) {
+        ProductDetailPage detailPage = new ProductDetailPage(product);
+        try {
+            detailPage.start(primaryStage);
+        } catch (Exception e) {
+            log.warning("Error while showing product detail page");
+        }
     }
 
 }

@@ -15,11 +15,11 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         if (SessionManager.isLoggedIn()) {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("product-list-page.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load());
             show(stage, scene);
         } else {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("welcome-page.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load());
             show(stage, scene);
         }
     }
