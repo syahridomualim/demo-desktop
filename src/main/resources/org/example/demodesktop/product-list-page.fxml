@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane style="-fx-background-color: white" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.demodesktop.controller.ProductListController">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="40.0">
+            <Button fx:id="createProductButton" onAction="#handleCreateProduct" alignment="TOP_CENTER" mnemonicParsing="false"
+                    style="-fx-background-color: green; -fx-text-fill: white;" text="Create Product">
+                <HBox.margin>
+                    <Insets left="5.0" top="5.0"/>
+                </HBox.margin>
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="logoutButton" onAction="#handleLogout" mnemonicParsing="false" style="-fx-background-color: red;" text="Logout">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+                <HBox.margin>
+                    <Insets right="5.0" top="5.0"/>
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="productTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="productCodeColumn" text="Product Code"/>
+                <TableColumn fx:id="nameColumn" text="Product Name"/>
+                <TableColumn fx:id="priceColumn" text="Price"/>
+                <TableColumn fx:id="descriptionColumn" text="Description"/>
+                <TableColumn fx:id="createdAtColumn" text="Created At"/>
+                <TableColumn fx:id="updatedAtColumn" text="Updated At"/>
+            </columns>
+            <BorderPane.margin>
+                <Insets left="5.0" right="5.0" top="10.0"/>
+            </BorderPane.margin>
+        </TableView>
+    </center>
+</BorderPane>
